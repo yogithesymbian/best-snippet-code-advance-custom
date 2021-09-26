@@ -1,5 +1,5 @@
 
-# best snipper code advance custom
+# best snippet code advance custom
 
 - [x] nodejs-sequalize ( progress )
 - [ ] flutter dart
