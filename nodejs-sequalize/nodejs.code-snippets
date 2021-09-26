@@ -103,7 +103,7 @@
   "controller init": {
     "prefix": "controller-init-handler",
     "body": [
-      "var { res } = require(\"../utils/res\");",
+      "var response = require(\"../utils/res\");",
       "const { ${1:model1}, $model2 } = require(\"../models\");",
       "",
       "exports.${1:model1}Show = async (req, res) => {",
@@ -146,7 +146,7 @@
     ],
     "description": "controller-show-data"
   },
-  "controller-create-data": {
+  "controller create data": {
     "prefix": "controller-create-data",
     "body": [
       "exports.${1:model}Create = async (req, res) => {",
@@ -168,10 +168,10 @@
     ],
     "description": "controller-json-body"
   },
-  "controller-update-data": {
+  "controller update data": {
     "prefix": "controller-update-data",
     "body": [
-      "exports.${1:model}Update = async (req, res) => {",
+      "exports.${1:model}_update = async (req, res) => {",
       "  const id = req.params.id;",
       "  await ${1:model}.update({",
       "    score: req.body.score",
@@ -188,10 +188,10 @@
     ],
     "description": "controller-update-data"
   },
-  "controller-delete-data": {
+  "controller delete data": {
     "prefix": "controller-delete-data",
     "body": [
-      "exports.${1:model}Delete = async (req, res) => {",
+      "exports.${1:model}_delete = async (req, res) => {",
       "  const id = req.params.id;",
       "  const flag = req.params.flag;",
       "  await ${1:model}.update({",
@@ -213,7 +213,7 @@
     ],
     "description": "controller-update-data"
   },
-  "routes-init": {
+  "routes init": {
     "prefix": "routes-init",
     "body": [
       "const { authJwt } = require(\"../middleware\");",
