@@ -1,0 +1,171 @@
+{
+  "seeder delete": {
+    "prefix": "seeder-delete",
+    "body": [
+      "return await queryInterface.bulkDelete('$model_names', null, {});"
+    ],
+    "description": "model delete"
+  },
+  "seeder create": {
+    "prefix": "seeder-create",
+    "body": [
+      "return await queryInterface.bulkInsert('$model_names', [",
+      " {",
+      "   $column: '$data',",
+      "   created_at: new Date(),",
+      "   updated_at: new Date()",
+      " },",
+      " {",
+      "   created_at: new Date(),",
+      "   updated_at: new Date()",
+      " },",
+      "]);"
+    ],
+    "description": "seeder create"
+  },
+  "migration create at": {
+    "prefix": "migration-create-at",
+    "body": [
+      "created_at"
+    ],
+    "description": "migration create at"
+  },
+  "migration updated at": {
+    "prefix": "migration-updated-at",
+    "body": [
+      "updated_at"
+    ],
+    "description": "migration updated at"
+  },
+  "migration string column": {
+    "prefix": "migration-string-column",
+    "body": [
+      "$column_name: {",
+      "  type: Sequelize.STRING",
+      "},"
+    ],
+    "description": "migration string column"
+  },
+  "migration text column": {
+    "prefix": "migration-text-column",
+    "body": [
+      "$column_name: {",
+      "  type: Sequelize.TEXT",
+      "},"
+    ],
+    "description": "migration text column"
+  },
+  "migration integer column": {
+    "prefix": "migration-integer-column",
+    "body": [
+      "$column_name: {",
+      "  type: Sequelize.INTEGER",
+      "},"
+    ],
+    "description": "migration integer column"
+  },
+  "migration foreign column": {
+    "prefix": "migration-foreignkey-column",
+    "body": [
+      "${1:column}$_id: {",
+      " type: Sequelize.INTEGER,",
+      " allowNull: false,",
+      " references: {",
+      "   model: \"${1:column}s\",",
+      "   key: \"id\"",
+      " },",
+      " onDelete: \"CASCADE\"",
+      "},"
+    ],
+    "description": "migration foreign column"
+  },
+  "model init string column": {
+    "prefix": "model-string-column",
+    "body": [
+      "$column_name: DataTypes.STRING,"
+    ],
+    "description": "model init string column"
+  },
+  "model init integer column": {
+    "prefix": "model-integer-column",
+    "body": [
+      "$column_name: DataTypes.INTEGER,"
+    ],
+    "description": "model init integer column"
+  },
+  "model init text column": {
+    "prefix": "model-text-column",
+    "body": [
+      "$column_name: DataTypes.TEXT,"
+    ],
+    "description": "model init text column"
+  },
+  "controller init": {
+    "prefix": "controller-init-handler",
+    "body": [
+      "var { res } = require(\"../utils/res\");",
+      "const { ${1:model1}, $model2 } = require(\"../models\");",
+      "",
+      "exports.${1:model1}Show = async (req, res) => {",
+      "  await ${1:model1}.",
+      "  // res.status(200).send(\"Content.\");",
+      "};"
+    ],
+    "description": "controller init"
+  },
+  "controller-show-data": {
+    "prefix": "controller-show-data",
+    "body": [
+      "exports.${1:model}Show = async (req, res) => {",
+      "  const id = req.params.id;",
+      "  if (id) {",
+      "    await ${1:model}.findOne({",
+      "      where: {",
+      "        $column_id: id",
+      "      }",
+      "    }).then((${1:model}s) => {",
+      "      const resData = {",
+      "        ${1:model}s: ${1:model}s,",
+      "      };",
+      "      response.ok(res, \"load ${1:model} data\", resData);",
+      "    }).catch((err) => {",
+      "      console.log('${1:model}Show findOne error : ', err);",
+      "    });",
+      "  } else {",
+      "    await ${1:model}.findAll()",
+      "    .then( async (${1:model}s) => {",
+      "      const resData = {",
+      "        ${1:model}s: ${1:model}s,",
+      "      };",
+      "      response.ok(res, \"load scores data\", resData);",
+      "    }).catch((err) => {",
+      "      console.log('${1:model}Show findAll error : ', err);",
+      "    });",
+      "  }",
+      "};"
+    ],
+    "description": "controller-show-data"
+  },
+  "controller-create-data": {
+    "prefix": "controller-create-data",
+    "body": [
+      "exports.${1:model}Create = async (req, res) => {",
+      "  await ${1:model}.create({",
+      "    // user_id: req.body.user_id,",
+      "  }).then((${1:model}) => {",
+      "    response.ok(res, \"${1:model} created\", 1);",
+      "  }).catch((err) => {",
+      "    console.log('${1:model} create error :', err);",
+      "  });",
+      "}"
+    ],
+    "description": "controller-create-data"
+  },
+  "controller-json-body": {
+    "prefix": "controller-json-body",
+    "body": [
+      "${1:json}: req.body.${1:json},"
+    ],
+    "description": "controller-json-body"
+  }
+}
