@@ -106,7 +106,7 @@
       "var response = require(\"../utils/res\");",
       "const { ${1:model1}, $model2 } = require(\"../models\");",
       "",
-      "exports.${1:model1}Show = async (req, res) => {",
+      "exports.${1:model1}_show = async (req, res) => {",
       "  await ${1:model1}.",
       "  // res.status(200).send(\"Content.\");",
       "};"
@@ -116,7 +116,7 @@
   "controller-show-data": {
     "prefix": "controller-show-data",
     "body": [
-      "exports.${1:model}Show = async (req, res) => {",
+      "exports.${1:model}_show = async (req, res) => {",
       "  const id = req.params.id;",
       "  if (id) {",
       "    await ${1:model}.findOne({",
@@ -129,7 +129,7 @@
       "      };",
       "      response.ok(res, \"load ${1:model} data\", resData);",
       "    }).catch((err) => {",
-      "      console.log('${1:model}Show findOne error : ', err);",
+      "      console.log('${1:model}_show findOne error : ', err);",
       "    });",
       "  } else {",
       "    await ${1:model}.findAll()",
@@ -139,7 +139,7 @@
       "      };",
       "      response.ok(res, \"load scores data\", resData);",
       "    }).catch((err) => {",
-      "      console.log('${1:model}Show findAll error : ', err);",
+      "      console.log('${1:model}_show findAll error : ', err);",
       "    });",
       "  }",
       "};"
@@ -149,7 +149,7 @@
   "controller create data": {
     "prefix": "controller-create-data",
     "body": [
-      "exports.${1:model}Create = async (req, res) => {",
+      "exports.${1:model}_create = async (req, res) => {",
       "  await ${1:model}.create({",
       "    // user_id: req.body.user_id,",
       "  }).then((${1:model}) => {",
@@ -227,15 +227,46 @@
       "    );",
       "    next();",
       "  });",
-      "",
-      "  app.get(",
-      "    \"/api/test/user\", ",
-      "    [authJwt.verifyToken], ",
-      "    controller.userBoard",
-      "  );",
+      "  // codehere",
+      "  $routercrud",
       "};",
       ""
     ],
     "description": "routes-init"
+  },
+  "routes-crud": {
+    "prefix": "routes-crud",
+    "body": [
+      "// findAll",
+      "app.get(\"/api/${1:uri}\",",
+      "  [authJwt.verifyToken],",
+      "  controller.${2:controller}_show",
+      ");",
+      "",
+      "// findOne",
+      "app.get(\"/api/${1:uri}/:id\",",
+      "  [authJwt.verifyToken],",
+      "  controller.${2:controller}_show",
+      ");",
+      "",
+      "// create",
+      "app.post(\"/api/${1:uri}\",",
+      "  [authJwt.verifyToken],",
+      "  controller.${2:controller}_create",
+      ");",
+      "",
+      "// update",
+      "app.put(\"/api/${1:uri}/:id\",",
+      "  [authJwt.verifyToken],",
+      "  controller.${2:controller}_update",
+      ");",
+      "",
+      "// delete",
+      "app.delete(\"/api/${1:uri}/:id/:flag\",",
+      "  [authJwt.verifyToken],",
+      "  controller.${2:controller}_delete",
+      ");"
+    ],
+    "description": "routes-crud"
   }
 }
