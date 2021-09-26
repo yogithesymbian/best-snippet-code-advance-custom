@@ -167,5 +167,75 @@
       "${1:json}: req.body.${1:json},"
     ],
     "description": "controller-json-body"
+  },
+  "controller-update-data": {
+    "prefix": "controller-update-data",
+    "body": [
+      "exports.${1:model}Update = async (req, res) => {",
+      "  const id = req.params.id;",
+      "  await ${1:model}.update({",
+      "    score: req.body.score",
+      "  }, {",
+      "    where: {",
+      "      id: id",
+      "    }",
+      "  }).then((${1:model}) => {",
+      "    response.ok(res, \"${1:model} updated\", 1);",
+      "  }).catch((err) => {",
+      "    console.log('${1:model} updated error :', err);",
+      "  });",
+      "}"
+    ],
+    "description": "controller-update-data"
+  },
+  "controller-delete-data": {
+    "prefix": "controller-delete-data",
+    "body": [
+      "exports.${1:model}Delete = async (req, res) => {",
+      "  const id = req.params.id;",
+      "  const flag = req.params.flag;",
+      "  await ${1:model}.update({",
+      "    delete_flag: flag == 1 ? 1 : null,",
+      "  }, {",
+      "    where: {",
+      "      id: id",
+      "    }",
+      "  }).then((${1:model}) => {",
+      "    var msg = \"${1:model} unDeleted\";",
+      "    if (flag == 1) {",
+      "      msg = \"${1:model} deleted\"",
+      "    }",
+      "    response.ok(res, msg, 1);",
+      "  }).catch((err) => {",
+      "    console.log('${1:model} deleted error :', err);",
+      "  });",
+      "}"
+    ],
+    "description": "controller-update-data"
+  },
+  "routes-init": {
+    "prefix": "routes-init",
+    "body": [
+      "const { authJwt } = require(\"../middleware\");",
+      "const controller = require(\"../controllers/${1:controller_name}.controller\");",
+      "",
+      "module.exports = function (app) {",
+      "  app.use(function (req, res, next) {",
+      "    res.header(",
+      "      \"Access-Control-Allow-Headers\",",
+      "      \"x-access-token, Origin, Content-Type, Accept\"",
+      "    );",
+      "    next();",
+      "  });",
+      "",
+      "  app.get(",
+      "    \"/api/test/user\", ",
+      "    [authJwt.verifyToken], ",
+      "    controller.userBoard",
+      "  );",
+      "};",
+      ""
+    ],
+    "description": "routes-init"
   }
 }
