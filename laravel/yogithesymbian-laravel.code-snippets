@@ -1,0 +1,73 @@
+{
+  "yo-seeder-init": {
+    "prefix": "yo-seeder-init",
+    "body": [
+      "DB::table('${1:table}')->delete();",
+      "",
+      "$$timeNow = Carbon::now()->format('Y-m-d H:i:s');",
+      "",
+      "$$datas = [",
+      "    ['id' => 1, 'code' => 'WVFB', 'name' => 'Wedding Venue & F&B',              'created_at' => $$timeNow, 'updated_at' => $$timeNow ],",
+      "];",
+      "foreach($$datas as $$data){",
+      "    ${2:Table}::create($$data);",
+      "}"
+    ],
+    "description": "yo-seeder-init"
+  },
+  "make column string on migration": {
+    "prefix": "yo-string-migration",
+    "body": [
+      "$$table->string('${1:column_name}', ${2:length_optional});"
+    ],
+    "description": "make column string on migration"
+  },
+  "make column integer on migration": {
+    "prefix": "yo-integer-migration",
+    "body": [
+      "$$table->integer('${1:column_name}');"
+    ],
+    "description": "make column integer on migration"
+  },
+  "make column id on migration": {
+    "prefix": "yo-id-migration",
+    "body": [
+      "$$table->bigIncrements('id');"
+    ],
+    "description": "make column id on migration"
+  },
+  "make column FK on migration": {
+    "prefix": "yo-fk-ForeignKey-migration",
+    "body": [
+      "$$table->unsignedBigInteger('${1:column_fk}_id');",
+      "$$table->foreign('${1:column_fk}_id')",
+      "      ->references('id')",
+      "      ->on('${2:table_target}')",
+      "      ->onDelete('cascade');"
+    ],
+    "description": "make column FK on migration"
+  },
+  "make index column on migration": {
+    "prefix": "yo-index-migration",
+    "body": [
+      "$$table->index(['created_at', '${1:column_name}']);"
+    ],
+    "description": "make index column on migration"
+  },
+  "make column boolean on migration": {
+    "prefix": "yo-boolean-migration",
+    "body": [
+      "$$table->boolean('${1:column_name}');"
+    ],
+    "description": "make column boolean on migration"
+  },
+  "debug return json": {
+    "prefix": "return-json",
+    "body": [
+      "return response()->json([",
+      "  $data",
+      "]);"
+    ],
+    "description": "debug return json"
+  }
+}
