@@ -18,6 +18,7 @@
       "            final data = data${1:ModelBrain}.data[index];",
       "            return Container();",
       "          },",
+      "          itemCount: dataScoreBrain.count,",
       "        );",
       "      },",
       "    );"
@@ -35,10 +36,271 @@
     "description": "main multi provider body"
   },
   "main routes body": {
-    "prefix": "main-routes",
+    "prefix": "route-define",
     "body": [
       "${1:ScreenName}.id: (context) => ${1:ScreenName}(),"
     ],
-    "description": "main routes body"
+    "description": "main routes define | body"
+  },
+  "Navigator Push Named": {
+    "prefix": "nav-intent",
+    "body": [
+      "Navigator.pushNamed(context, ${1:Screen.id});"
+    ],
+    "description": "Navigator Push Named"
+  },
+  "text - for vscode spell": {
+    "prefix": "text",
+    "body": [
+      "Text('${1:string}'),"
+    ],
+    "description": "text - for vscode spell"
+  },
+  "Icon(Icons - for vscode spell": {
+    "prefix": "icon",
+    "body": [
+      "Icon(Icons.${1:icon_name}),"
+    ],
+    "description": "Icon(Icons - for vscode spell"
+  },
+  "route id": {
+    "prefix": "route-id",
+    "body": [
+      "static const String id = '/${1:route_name}';"
+    ],
+    "description": "route id"
+  },
+  "statefull widget - modified": {
+    "prefix": "stf-modified",
+    "body": [
+      "import 'package:flutter/material.dart';",
+      "",
+      "class ${1:PageName}Screen extends StatefulWidget {",
+      "  static const String id = '/${2:route_name}';",
+      "  const ${1:PageName}Screen({Key? key}) : super(key: key);",
+      "",
+      "  @override",
+      "  _${1:PageName}ScreenState createState() => _${1:PageName}ScreenState();",
+      "}",
+      "",
+      "class _${1:PageName}ScreenState extends State<${1:PageName}Screen> {",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return Container(",
+      "      ${3:code_here}",
+      "    );",
+      "  }",
+      "}",
+      ""
+    ],
+    "description": "statefull widget - modified"
+  },
+  "stateless widget - modified": {
+    "prefix": "stl-modified",
+    "body": [
+      "import 'package:flutter/material.dart';",
+      "",
+      "class ${1:PageName}Screen extends StatelessWidget {",
+      "  const ${1:PageName}Screen({ Key? key }) : super(key: key);",
+      "",
+      "  @override",
+      "  Widget build(BuildContext context) {",
+      "    return Container(",
+      "      ${2:code_here}",
+      "    );",
+      "  }",
+      "}"
+    ],
+    "description": "stateless widget - modified"
+  },
+  "size media query context": {
+    "prefix": "size-mediaquery",
+    "body": [
+      "final size = MediaQuery.of(context).size;"
+    ],
+    "description": "size media query context"
+  },
+  "void async": {
+    "prefix": "void-async",
+    "body": [
+      "void ${1:funcName}() async {",
+      "  ${2:code_here}",
+      "}"
+    ],
+    "description": "void async"
+  },
+  "void no async": {
+    "prefix": "void-no-async",
+    "body": [
+      "void ${1:funcName}() {",
+      "  ${2:code_here}",
+      "}"
+    ],
+    "description": "void no async"
+  },
+  "text field widget modified": {
+    "prefix": "text-field-modified ( widget )",
+    "body": [
+      "TextField(",
+      "  autofocus: false,",
+      "  style: kTextFieldTextStyle.copyWith(",
+      "    color: kPrimaryColor,",
+      "  ),",
+      "  // keyboardType: TextInputType.emailAddress,",
+      "  cursorColor: kPrimaryColor,",
+      "  decoration: kInputDecoration.copyWith(",
+      "    hintText: '${1:hint_text}',",
+      "    // prefixIcon: Icon(",
+      "    //  Icons.email,",
+      "    //  color: kPrimaryColor,",
+      "    // ),",
+      "    suffixIcon: ${2:name_controller}Controller.text.isNotEmpty",
+      "        ? IconButton(",
+      "            onPressed: ${2:name_controller}Controller.clear,",
+      "            icon: Icon(",
+      "              Icons.clear,",
+      "              color: kPrimaryColor,",
+      "            ),",
+      "          )",
+      "        : null,",
+      "  ),",
+      "  textInputAction: TextInputAction.next,",
+      "  controller: ${2:name_controller}Controller,",
+      "),"
+    ],
+    "description": "text field widget modified"
+  },
+  "text field define modified": {
+    "prefix": "text-define-modified",
+    "body": [
+      "TextEditingController ${1:name_controller}Controller = TextEditingController();"
+    ],
+    "description": "text field define modified"
+  },
+  "class service initialize": {
+    "prefix": "service-class-init",
+    "body": [
+      "import 'package:flutter_starterpack_jelly/services/networking.dart';",
+      "import 'package:flutter_starterpack_jelly/utils/value.dart';",
+      "",
+      "const uri${1:uri_name} = '/api/${2:uri}';",
+      "",
+      "class ${3:ClassName}Service {",
+      "  NetworkingHelper? _networkingHelper;",
+      "  String? uriData = '$$kApiUri$$uri${1:uri_name}';",
+      "",
+      "  Future<dynamic> getData() async {",
+      "    // debug",
+      "    print('uri : $$uriData');",
+      "    // set uri",
+      "    _networkingHelper = NetworkingHelper(",
+      "      url: '$$uriData',",
+      "    );",
+      "    // execute action",
+      "    return await _networkingHelper?.getData();",
+      "  }",
+      "  Future<dynamic> postData(${4:DataClass} body) async {",
+      "    // debug",
+      "    print('uri : $$uriData');",
+      "    // set uri",
+      "    _networkingHelper = NetworkingHelper(",
+      "      url: '$$uriData',",
+      "    );",
+      "    // execute action",
+      "    return await _networkingHelper?.postData(body);",
+      "  }",
+      "  Future<dynamic> putData(${4:DataClass} body, int id) async {",
+      "    // debug",
+      "    print('uri : $$uriData/$$id');",
+      "    // set uri",
+      "    _networkingHelper = NetworkingHelper(",
+      "      url: '$$uriData/$$id',",
+      "    );",
+      "    // execute action",
+      "    return await _networkingHelper?.putReplaceOrCreateData(body);",
+      "  }",
+      "  Future<dynamic> patchData(${4:DataClass} body, int id) async {",
+      "    // debug",
+      "    print('uri : $$uriData/$$id');",
+      "    // set uri",
+      "    _networkingHelper = NetworkingHelper(",
+      "      url: '$$uriData/$$id',",
+      "    );",
+      "    // execute action",
+      "    return await _networkingHelper?.patchUpdateData(body);",
+      "  }",
+      "  Future<dynamic> deleteData(int id) async {",
+      "    // debug",
+      "    print('uri : $$uriData/$$id');",
+      "    // set uri",
+      "    _networkingHelper = NetworkingHelper(",
+      "      url: '$$uriData/$$id',",
+      "    );",
+      "    // execute action",
+      "    return await _networkingHelper?.deleteData();",
+      "  }",
+      "}"
+    ],
+    "description": "class service initialize"
+  },
+  "context provider read": {
+    "prefix": "context-provider-read",
+    "body": [
+      "final ${1:name}BrainR = context.read<${2:Name}Brain>();"
+    ],
+    "description": "context provider read"
+  },
+  "context provider watch": {
+    "prefix": "context-provider-watch",
+    "body": [
+      "final ${1:name}BrainW = context.watch<${2:Name}Brain>();"
+    ],
+    "description": "context provider watch"
+  },
+  "snackbar show": {
+    "prefix": "snackbar-show",
+    "body": [
+      "ScaffoldMessenger.of(context).showSnackBar(",
+      "  SnackBar(",
+      "    content: Text('${1:message}'),",
+      "    action: SnackBarAction(",
+      "      // textColor: ,",
+      "      label: '${2:label}',",
+      "      onPressed: () {",
+      "        ${3:function} // Some code to undo the change.",
+      "      },",
+      "    ),",
+      "  ),",
+      ");"
+    ],
+    "description": "snackbar show"
+  },
+  "image assets": {
+    "prefix": "ima-assets",
+    "body": [
+      "Image.asset(",
+      "  ${1:asset_name} ?? ${2:if_null} ,",
+      "  // fit: BoxFit.cover,",
+      "),"
+    ],
+    "description": "image assets"
+  },
+  "const size box height": {
+    "prefix": "size-box-height-const",
+    "body": [
+      "const SizedBox(",
+      " height: ${1:height},",
+      "),"
+    ],
+    "description": "const size box height"
+  },
+  "const size box width": {
+    "prefix": "size-box-width-const",
+    "body": [
+      "const SizedBox(",
+      " width: ${1:height},",
+      "),"
+    ],
+    "description": "const size box width"
   }
 }
