@@ -302,5 +302,49 @@
       "),"
     ],
     "description": "const size box width"
+  },
+  "navigator intent with data": {
+    "prefix": "nav-intent-with-data",
+    "body": [
+      "Navigator.pushNamed(",
+      "  context,",
+      "  ${1:NameScreen.id},",
+      "  arguments: {",
+      "    \"id\": ${1:data_id}",
+      "  },",
+      ");"
+    ],
+    "description": "navigator intent with data"
+  },
+  "route define with argument | data": {
+    "prefix": "route-define-args",
+    "body": [
+      "${1:NameScreen}.id: (context, {arguments}) => ${1:NameScreen}(",
+      " arguments: arguments,",
+      "),"
+    ],
+    "description": "route define with argument | data"
+  },
+  "show snackbar top": {
+    "prefix": "snackbar-top-msg",
+    "body": [
+      "showTopSnackBar(",
+      "  context,",
+      "  CustomSnackBar.success(",
+      "    message: \"Berhasil mengubah password!\",",
+      "    backgroundColor: kColorLightBlue,",
+      "  ),",
+      ");"
+    ],
+    "description": "show snackbar top"
+  },
+  "text field add listener": {
+    "prefix": "text-field-listener",
+    "body": [
+      "${1:nameController}.addListener(() {",
+      "  setState(() {});",
+      "});"
+    ],
+    "description": "text field add listener"
   }
 }
