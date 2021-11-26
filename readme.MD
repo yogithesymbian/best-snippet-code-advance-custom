@@ -10,7 +10,7 @@
 semoga yang menggunakan snippets ini menghasilkan rezki yang berlimpah dan juga baik, dan mengalirkan pahala kepada pengguna (anda) dan juga saya.
 ## TODO
 - [x] nodejs-sequalize ( progress )
-- [ ] flutter dart
+- [x] flutter dart
     - [ ] mobile ( soon )
     - [ ] web ( soon )
     - [ ] desktop ( soon )
